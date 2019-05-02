@@ -1,0 +1,71 @@
+#####################################################Online Quiz 2######################################################
+
+
+######################### a
+## Directory and put the pem file in same folder
+cd ~/Desktop/Git
+
+## Download and Save files
+curl https://www.staff.hs-mittweida.de/~wuenschi/data/media/compbiolbook/chapter-11-regex--structure.pdb > structure.pdb
+
+## Put files into AWS account
+scp -i 44316429.pem structure.pdb ubuntu@ec2-13-236-121-203.ap-southeast-2.compute.amazonaws.com:
+
+## Log in to ubuntu account
+ssh -i 44316429.pem ubuntu@ec2-13-236-121-203.ap-southeast-2.compute.amazonaws.com
+
+## Read the file
+cat structure.pdb
+
+## Change Beisel’s name to Weisel
+sed 's/Beisel/Weisel/' structure.pdb
+
+######################### b
+## Delete the first three lines of the file
+sed '1,3d' structure.pdb
+
+######################### c
+## Print only lines 5 through 10
+sed -n '5,10p' structure.pdb
+
+######################### d
+## Delete lines containing the word MET
+sed '/MET/d' structure.pdb
+
+######################### e
+## Print all lines where the HELIX line contains the word ILE
+sed -n '/^HELIX.*ILE/p' structure.pdb
+
+######################### f
+## Append three stars to the end of lines starting with “H”
+sed '/^H/s/$/***/' structure.pdb
+
+######################### g
+## Replace the lines containing SEQRES with SEQ
+sed '/SEQRES/s/^.*$/SEQ/' structure.pdb
+
+######################### h
+## Directory and put the pem file in same folder
+cd ~/Desktop/Git
+
+## Download the file from iLearn
+## Put files into AWS account
+scp -i 44316429.pem jabberwocky.txt ubuntu@ec2-13-236-121-203.ap-southeast-2.compute.amazonaws.com:
+
+## Log in to ubuntu account
+ssh -i 44316429.pem ubuntu@ec2-13-236-121-203.ap-southeast-2.compute.amazonaws.com
+
+## Read the file
+cat jabberwocky.txt
+
+## Find all blank lines
+cat -A jabberwocky.txt
+
+## Delete all blank lines
+sed '/^[[:space:]]*$/d' jabberwocky.txt
+
+
+
+
+
+
